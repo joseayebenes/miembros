@@ -14,9 +14,9 @@ if(! defined('ABSPATH')){
   exit;
 }
 
-require_once(plugin_dir_path(__FILE__).'fpdf/fpdf.php');
+
 
 require_once(plugin_dir_path(__FILE__).'miembros-cpt.php');
 require_once(plugin_dir_path(__FILE__).'miembros-tax.php');
 require_once(plugin_dir_path(__FILE__).'miembros-fields.php');
-require_once(plugin_dir_path(__FILE__).'miembros-settings.php');
+require_once(plugin_dir_path(__FILE__).'miembros-admin-pages.php');

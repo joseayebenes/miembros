@@ -58,9 +58,13 @@ function exportar_admin_callback(){
 
   <?php
 
+  require(plugin_dir_path(__FILE__).'fpdf/fpdf.php');
   $pdf=new FPDF();
   $pdf->AddPage();
   $pdf->SetFont('Arial','B',16);
-  $pdf->Cell(40,10,'¡Mi primera página pdf con FPDF!');
-  $pdf->Output();
+  $pdf->Cell(40,10,'¡Mi primer pdf con FPDF!');
+  $pdf->Output(plugin_dir_path(__FILE__) . 'report.pdf', "F");
+  ?>
+  <a class="button button-primary" href="<?php echo plugin_dir_url(__FILE__).'report.pdf'; ?>" download>download not open it</a>
+  <?php
 }
