@@ -43,28 +43,23 @@ function exportar_admin_callback(){
   <fieldset>
   <legend class="screen-reader-text">Contenido a exportar</legend>
   <input type="hidden" name="download" value="true" />
-  <p><label><input type="radio" name="content" value="all" checked="checked" aria-describedby="all-content-desc" /> Todo el contenido</label></p>
 
-  <p><label><input type="radio" name="content" value="posts" /> Entradas</label></p>
-
-  <p><label><input type="radio" name="content" value="pages" /> Páginas</label></p>
-  <p><label><input type="radio" name="content" value="miembro" /> Miembros</label></p>
-  <p><label><input type="radio" name="content" value="job" /> Job Listings</label></p>
-
-  <p><label><input type="radio" name="content" value="attachment" /> Medios</label></p>
-
+  <p><label><input type="radio" name="content" value="posts" /> Lista de Correos</label></p>
+  <p><label><input type="radio" name="content" value="pages" /> Lista de Miembros</label></p>
+  <p><label><input type="radio" name="content" value="pages" /> Lista de Miembros Completa</label></p>
+  <p><label><input type="radio" name="content" value="job" /> Todo fichero csv</label></p>
   <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Descargar el archivo de exportación"  /></p></form>
   </div>
 
   <?php
+  $args = array(
+               'content'    => 'miembro',
+               'author'     => false,
+               'category'   => false,
+               'start_date' => false,
+               'end_date'   => false,
+               'status'     => false,
+   );
+   export_wp( $args );
 
-  require(plugin_dir_path(__FILE__).'fpdf/fpdf.php');
-  $pdf=new FPDF();
-  $pdf->AddPage();
-  $pdf->SetFont('Arial','B',16);
-  $pdf->Cell(40,10,'¡Mi primer pdf con FPDF!');
-  $pdf->Output(plugin_dir_path(__FILE__) . 'report.pdf', "F");
-  ?>
-  <a class="button button-primary" href="<?php echo plugin_dir_url(__FILE__).'report.pdf'; ?>" download>download not open it</a>
-  <?php
 }
