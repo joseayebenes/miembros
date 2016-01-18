@@ -1,56 +1,4 @@
 <?php
-function miembros_add_submenu_page() {
-
-	add_submenu_page(
-		'edit.php?post_type=miembro',
-		__( 'Ajustes' ),
-		__( 'Ajustes' ),
-		'manage_options',
-		'ajustes',
-		'ajustes_admin_callback'
-	);
-
-  add_submenu_page(
-		'edit.php?post_type=miembro',
-		__( 'Exportar' ),
-		__( 'Exportar' ),
-		'manage_options',
-		'exportar',
-		'exportar_admin_callback'
-	);
-
-}
-add_action( 'admin_menu', 'miembros_add_submenu_page' );
-
-function ajustes_admin_callback(){
-  ?>
-  <div class="wrap">
-    <h1>Ajustes</h1>
-
-		<h2>Pleno Actual</h2>
-		<form action="options.php" method="POST">
-			<?php
-				settings_fields('miembros-pleno-actual');
-				do_settings_sections('miembros-pleno-actual');
-				$plenos = get_terms( 'pleno', 'orderby=count&hide_empty=0' );
-			 ?>
-			 <label>Pleno Actual: </label>
-			 <select name="miembros-pleno-actual-value" id="miembros-pleno-actual-value">
-				 <?php foreach ($plenos as $pleno ): ?>
-					 <option value="<?php echo $pleno->name; ?>" <?php if ( ! empty ( get_option('miembros-pleno-actual-value') ) ){ selected( get_option('miembros-pleno-actual-value'), $pleno->name);} ?> ><?php echo $pleno->name; ?></option>
-				 <?php endforeach; ?>
-			 </select>
-			 <?php submit_button(); ?>
-		</form>
-  </div>
-
-  <?php
-}
-
-function miembros_ajustes_register(){
-	register_setting('miembros-pleno-actual','miembros-pleno-actual-value');
-}
-add_action('admin_init','miembros_ajustes_register');
 
 function exportar_admin_callback(){
   ?>
@@ -94,7 +42,7 @@ function miembros_ajax_export() {
 	if($type=="correos"){
 
 		$args = array(
-			'orderby'          => 'title',
+			'orderby'          => 'titulacion',
 			'order'            => 'DESC',
 			'post_type'        => 'miembro',
 			'post_status'      => 'publish',

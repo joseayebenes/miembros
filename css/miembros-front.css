@@ -1,0 +1,26 @@
+#miembros-table tr:nth-child(odd) {
+    background-color: #eee;
+}
+
+#miembros-table caption {
+    background-color: #fff;
+    text-align: center;
+    font-size: small;
+}
+
+#miembros-table td {
+    font-size: small;
+}
+
+#curso-tr td{
+  text-align: center;
+  font-size: medium;
+}
+
+#miembros-table th {
+    text-align: center;
+}
+
+#miembros-table{
+  border-collapse: collapse;
+}

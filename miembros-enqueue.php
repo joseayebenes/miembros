@@ -29,3 +29,10 @@ function miembros_admin_enqueue() {
 
 }
 add_action( 'admin_enqueue_scripts', 'miembros_admin_enqueue' );
+
+function miembros_front_enqueue() {
+
+	wp_enqueue_style( 'miembros-css', plugins_url( 'css/miembros-front.css', __FILE__ ) );
+
+}
+add_action( 'wp_enqueue_scripts', 'miembros_front_enqueue' );
