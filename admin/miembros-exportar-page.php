@@ -13,8 +13,6 @@ function exportar_admin_callback(){
   <legend class="screen-reader-text">Contenido a exportar</legend>
   <p><label><input type="radio" name="content" value="correos" /> Lista de Correos</label></p>
   <p><label><input type="radio" name="content" value="miembros" /> Lista de Miembros</label></p>
-  <p><label><input type="radio" name="content" value="miembros-detallada" /> Lista de Miembros Detallada</label></p>
-  <p><label><input type="radio" name="content" value="csv" /> Todo fichero csv</label></p>
   <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Generar el archivo de exportación"  /></p>
 	</form>
 
@@ -108,35 +106,6 @@ function miembros_ajax_export() {
         $pdf->Cell(0,15,utf8_decode($miembro->post_title),0,1);
         $pdf->Line($pdf->GetX(),$pdf->GetY(), $pdf->GetX()+$pdf->GetPageWidth()-20,$pdf->GetY() );
 
-      }
-      $pdf->output(plugin_dir_path(__FILE__).$file_name,'F');
-      break;
-    case "miembros-detallada":
-      $args = array(
-        'orderby'          => 'titulacion',
-        'order'            => 'DESC',
-        'post_type'        => 'miembro',
-        'post_status'      => 'publish',
-        'tax_query'				 => array(
-          array(
-            'taxonomy' => 'pleno',
-            'field'		 => 'slug',
-            'terms'		 => get_option('miembros-pleno-actual-value')
-          )
-        )
-      );
-      $miembros = get_posts( $args );
-
-      $file_name ='print.pdf';
-      $pdf = new PDF();
-      $pdf->AliasNbPages();
-      $pdf->AddPage();
-      $pdf->SetFont('Times','',20);
-      $pdf->Cell(0,10,'Lista de Miembros Detallada',0,1,'C');
-      $pdf->SetFont('Times','',12);
-      foreach ($miembros as $miembro ) {
-        $pdf->Cell(0,5,utf8_decode($miembro->post_title),0,1);
-        $pdf->Line($pdf->GetX(),$pdf->GetY(), $pdf->GetX()+$pdf->GetPageWidth()-20,$pdf->GetY() );
       }
       $pdf->output(plugin_dir_path(__FILE__).$file_name,'F');
       break;

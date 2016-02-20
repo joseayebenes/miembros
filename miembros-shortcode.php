@@ -57,19 +57,21 @@ function miembros_shortcode_list( $atts, $content = null ) {
               <?php echo esc_html__( $miembro->post_title ); ?>
             </td>
             <td>
-              Comisiones:
-              <?php echo get_the_term_list($miembro->ID, 'comision','',', ') ; ?>
-              <br>
-              Colectivos:
-              <?php echo get_the_term_list($miembro->ID, 'colectivo','',', ') ; ?>
+              <?php
+              $comisiones = get_the_term_list($miembro->ID, 'comision','',', ','') ;
+              $colectivos = get_the_term_list($miembro->ID, 'colectivo','',', ') ;
+              echo "<b>Comisiones: </b>";
+              echo strip_tags($comisiones);
+              echo "<br>";
+              echo "<b>Colectivos: </b>";
+              echo strip_tags($colectivos);
+              ?>
             </td>
           </tr>
       <?php endforeach; ?>
 
     <?php
-
-      }
-
+        }
     }
   ?></table></div><?php
   }
