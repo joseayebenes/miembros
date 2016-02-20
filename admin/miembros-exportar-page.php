@@ -38,22 +38,25 @@ function miembros_ajax_export() {
 
 	$type = str_replace("content=","",$data);
 
+  $args = array(
+    'numberposts'      => -1,
+    'orderby'          => 'post_title',
+    'order'            => 'DESC',
+    'post_type'        => 'miembro',
+    'post_status'      => 'publish',
+    'tax_query'				 => array(
+      array(
+        'taxonomy' => 'pleno',
+        'field'		 => 'slug',
+        'terms'		 => get_option('miembros-pleno-actual-value')
+      )
+    )
+  );
+  $miembros = get_posts( $args );
+
   switch ($type) {
     case "correos":
-      $args = array(
-        'orderby'          => 'titulacion',
-        'order'            => 'DESC',
-        'post_type'        => 'miembro',
-        'post_status'      => 'publish',
-        'tax_query'				 => array(
-          array(
-            'taxonomy' => 'pleno',
-            'field'		 => 'slug',
-            'terms'		 => get_option('miembros-pleno-actual-value')
-          )
-        )
-      );
-      $miembros = get_posts( $args );
+
 
       $file_name ='print.pdf';
       $pdf = new PDF();
@@ -68,20 +71,6 @@ function miembros_ajax_export() {
       $pdf->output(plugin_dir_path(__FILE__).$file_name,'F');
       break;
     case "miembros":
-      $args = array(
-        'orderby'          => 'titulacion',
-        'order'            => 'DESC',
-        'post_type'        => 'miembro',
-        'post_status'      => 'publish',
-        'tax_query'				 => array(
-          array(
-            'taxonomy' => 'pleno',
-            'field'		 => 'slug',
-            'terms'		 => get_option('miembros-pleno-actual-value')
-          )
-        )
-      );
-      $miembros = get_posts( $args );
 
       $file_name ='print.pdf';
       $pdf = new PDF();

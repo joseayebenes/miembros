@@ -12,7 +12,7 @@ function miembros_shortcode_list( $atts, $content = null ) {
     ?>
     <div id="miembros-shortcode" >
       <table id="miembros-table" style="width:100%">
-        <caption><?php echo $titulacion->name; ?></caption>
+        <caption><?php echo "<h4>".$titulacion->name."</h4> "; ?></caption>
         <tr>
           <th>Nombre</th>
           <th>Datos</th>
