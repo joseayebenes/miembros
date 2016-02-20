@@ -5,8 +5,8 @@ function miembros_shortcode_list( $atts, $content = null ) {
 		return '<p class="job-error">Es necesario especificar el pleno.</p>';
 	}
 
-  $titulaciones = get_terms( 'titulacion', 'orderby=count&hide_empty=0' );
-  $cursos = get_terms( 'curso', 'orderby=count&hide_empty=0' );
+  $titulaciones = get_terms( 'titulacion', array('orderby' => 'slug', 'order' => 'ASC', 'hide_empty'=> 0));
+  $cursos = get_terms( 'curso',array('orderby' => 'slug', 'order' => 'ASC', 'hide_empty'=> 0) );
 
   foreach ($titulaciones as $titulacion ) {
     ?>
@@ -20,8 +20,8 @@ function miembros_shortcode_list( $atts, $content = null ) {
     <?php
       foreach ($cursos as $curso) {
         $args = array(
-          'orderby'          => 'titulacion',
-          'order'            => 'DESC',
+          'orderby'          => 'post_title',
+          'order'            => 'ASC',
           'post_type'        => 'miembro',
           'post_status'      => 'publish',
           'tax_query'				 => array(
@@ -48,7 +48,7 @@ function miembros_shortcode_list( $atts, $content = null ) {
       ?>
       <tr id="curso-tr">
         <td colspan="2">
-          <?php echo esc_html__( $curso->name ); ?>
+          <?php echo "<b>".esc_html__( $curso->name )."</b>"; ?>
         </td>
       </tr>
       <?php foreach ($miembros as $miembro): ?>
