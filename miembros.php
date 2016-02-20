@@ -5,7 +5,7 @@
 * Plugin URI: http://joseayebenes.es
 * Author: @joseayebenes
 * Author URI: http://joseayebenes.es
-* Version: 0.0.1
+* Version: 1.0
 * License: GPLv2
 * Description: un plugin creado para gestión de miembros
 */
