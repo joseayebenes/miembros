@@ -57,6 +57,11 @@ function miembros_shortcode_list( $atts, $content = null ) {
               <?php echo esc_html__( $miembro->post_title ); ?>
             </td>
             <td>
+              Comisiones:
+              <?php echo get_the_term_list($miembro->ID, 'comision','',', ') ; ?>
+              <br>
+              Colectivos:
+              <?php echo get_the_term_list($miembro->ID, 'colectivo','',', ') ; ?>
             </td>
           </tr>
       <?php endforeach; ?>
